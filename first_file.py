@@ -13,6 +13,9 @@ def ncr(n, r):
 
     return numer / denom
 
+def entropy(prob):
+    return prob * math.log2(prob) - (1-prob)*math.log2(1 - prob)
+
 def compute_prob_error_parity(err, nr_bits):
     """
     Computes the sum of all probabilities of odd weight errors which can flip
@@ -34,10 +37,12 @@ def compute_prob_error_parity(err, nr_bits):
 def compute_prob_fail_decode_repetition(err, nr_bits):
     """
         Assume a repetition code of length nr_bits
-        Errors which are not correctable have a weight larger than (nr-1)/2
+        Errors which are not correctable have a weight larger than (nr-1)/2 [Ref]
         -> This means that the correct majority cannot be computed back
 
         This function computes the probability that a majority from a repetition code will be wrongly read
+
+        [Ref] http://www.inference.org.uk/itprnn/book.pdf, page 16, Exercise 1.6
     """
 
     sum = 0.0
@@ -72,6 +77,8 @@ def main():
         currenterr = compute_prob_fail_decode_repetition(trial_err, measurement_rep)
 
     print("repeat N=", measurement_rep, "for an error of", currenterr)
+
+    print(entropy(trial_err))
 
 
 if __name__ == "__main__":
