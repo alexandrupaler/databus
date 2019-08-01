@@ -19,8 +19,6 @@ def compute_prob_error_parity(err, nr_bits):
     a sequence of nr bits encoding a single parity bit
     1, 3, 5, 7,..., nr - 1 (if nr is even)
 
-    :param err:
-    :param nr_bits:
     :return: Total probability of all odd weight errors
     """
 
@@ -63,7 +61,7 @@ def main():
     print("targeted error probability of logical bus measurement", targeterr)
 
     # a single bus measurement encodes a parity
-    # what is the probability that the bus holds the wrong
+    # what is the probability that the bus holds the wrong parity after it has been measured?
     trial_err = compute_prob_error_parity(phys_err, nr_error_locations)
     print("a bus measurement will fail with", trial_err)
 
