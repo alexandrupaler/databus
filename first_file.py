@@ -14,7 +14,7 @@ def ncr(n, r):
     return numer / denom
 
 def entropy(prob):
-    return prob * math.log2(prob) - (1-prob)*math.log2(1 - prob)
+    return prob * math.log2(prob) + (1-prob)*math.log2(1 - prob)
 
 def compute_prob_error_parity(err, nr_bits):
     """
@@ -78,7 +78,17 @@ def main():
 
     print("repeat N=", measurement_rep, "for an error of", currenterr)
 
-    print(entropy(trial_err))
+    # using an argument like Shannon's second theorem
+    # where N = M + N H(p) for M=1
+    # meaning that the total number of bits N should be equal to"
+    # - the bits one needs to encode (M=1)
+    # plus
+    # - the ratio by the entropic uncertainty (for large trial_err entropy is very low) multiplied with N
+    # In other words out of N bits entropy bits are redundant/useless and M bits are true information
+    M = 1
+    N = M / (1 + entropy(trial_err))
+    print()
+    print("Second argument for N: ", N)
 
 
 if __name__ == "__main__":
