@@ -42,7 +42,10 @@ def compute_prob_fail_decode_repetition(err, nr_bits):
 
         This function computes the probability that a majority from a repetition code will be wrongly read
 
-        [Ref] http://www.inference.org.uk/itprnn/book.pdf, page 16, Exercise 1.6
+        [Ref] http://www.inference.org.uk/itprnn/book.pdf, page 16, Exercise 1.3d
+        \begin{quote}
+            Assuming f=0.1, how many repetitions are required to get the probability of error downt o 10^{-15}. [Answer:about 60.]
+        \end{quote}
     """
 
     sum = 0.0
