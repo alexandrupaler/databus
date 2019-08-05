@@ -68,6 +68,7 @@ def main():
     # a single bus measurement encodes a parity
     # what is the probability that the bus holds the wrong parity after it has been measured?
     trial_err = compute_prob_error_parity(phys_err, nr_error_locations)
+    # trial_err = 0.49999999
     print("a bus measurement will fail with", trial_err)
 
     currenterr = 1
@@ -85,6 +86,7 @@ def main():
     # plus
     # - the ratio by the entropic uncertainty (for large trial_err entropy is very low) multiplied with N
     # In other words out of N bits entropy bits are redundant/useless and M bits are true information
+    # trial_err = 0.499999999
     M = 1
     N = M / (1 + entropy(trial_err))
     print()
